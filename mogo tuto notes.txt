@@ -1,0 +1,82 @@
+https://github.com/sheraOnGit/MongosDb.git
+
+Mongo DB
+mongo "mongodb+srv://cluster0-1ere3.mongodb.net/test" --username ravi
+pass aecadmin
+
+to show database 
+show dbs 
+
+to create new db
+use <db name> 
+**db name is not case sensitive
+**unitl unless we insert some data in db it is not  going to show on "show dbs " command.
+
+to insert single data into db collection
+db.<"collectionName">.insertOne({<one data peice>})
+**insertOne insert single data in one go.
+**if we are not going to insert _id in data set, mongo by default onsert unique _id to every data
+
+to insert multiple data into db collection
+db.<collectionName>.insertMany()
+
+
+Read data
+to fetch data from db collection
+db.<collectionName>.find()
+
+to fetch data in preety manner
+db.<collectionName>.find().pretty()
+
+to find first occurence of particular data
+db.<collectionName>.findOne(filter,options)
+
+to find with comparison activity
+db.<collectionName>.find({count: {$lt: 5}})
+
+Update
+update one
+db.<collection>.updateOne({name : "ravi"},{$set{name: "ravi shekhar"}})
+**it will update only first occuence of name="ravi"
+
+to update for multiple occurence
+db.<collection>.updateMany()
+
+**there is command 
+db.<collectionName>.update({},{})
+,and no need to add atomic operator ($set).
+But this command remove all the column of selected data and insert only filter column and updated value.(Video no 12 by hitesh)
+
+to delete for single occurence
+db.<collectionName>.deleteOne({name: "pallavi priya"})
+
+to delete for multiple occurence
+db.<collectionName>.deleteMany()
+
+to delete whole data
+db.<collectionName>.deleteMany({})
+
+to iterate whole collection
+db.<collectionName>.forEach((<variableName>)=>{printjson(<variableName>)})
+**if we have large dataset in collection on find() command we could not get whole dataset in one go.we have to type "it" after one page.
+But above command gives whole collection data in one go.
+
+
+Notes:
+About optimised query-
+In case of find() which is a cursor , it fetch all data from db.
+Suppose we run
+db.userData.find().forEach((user)=>{printjson(user.email)})
+this command return only list of email address.
+But when we run this command find() fetch all data from db i.e name, email,courseCount.
+So this is not optimised one.
+For optimise this we could apply some filter on find() cursor
+CMD:
+db.userData.find({},{email: 1,_id: 0,courseCount: 1})
+here we keep filter condtion field empty,then set 1 for those column which we wants to fetch.
+By default all columns are 0 other than _id.
+In this query application fetches only those columns are set as 1 
+
+
+
+

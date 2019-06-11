@@ -1,6 +1,6 @@
-https://github.com/sheraOnGit/MongosDb.git
-
 Mongo DB
+Q,delete DB?
+
 mongo "mongodb+srv://cluster0-1ere3.mongodb.net/test" --username ravi
 pass aecadmin
 
@@ -29,7 +29,7 @@ to fetch data in preety manner
 db.<collectionName>.find().pretty()
 
 to find first occurence of particular data
-db.<collectionName>.findOne(filter,options)
+db.<collectionName>.findOne(filter,selectColumns)
 
 to find with comparison activity
 db.<collectionName>.find({count: {$lt: 5}})
@@ -77,6 +77,13 @@ here we keep filter condtion field empty,then set 1 for those column which we wa
 By default all columns are 0 other than _id.
 In this query application fetches only those columns are set as 1 
 
+How to add object in a key:
 
+db.<collectionName>.insertOne({name:{
+firstName: "ravi",
+lastName: "shekhar"}
+})
 
+How to iterate such:
+db.<collectionName>.find({id: 2},{"name.firstName"})
 

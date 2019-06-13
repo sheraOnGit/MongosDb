@@ -1,5 +1,4 @@
 Mongo DB
-Q,delete DB?
 
 mongo "mongodb+srv://cluster0-1ere3.mongodb.net/test" --username ravi
 pass aecadmin
@@ -104,4 +103,27 @@ db.<collectionName>.find(
 $and : [{name:'ravi'},{name: 'pallavi'}]
 }
 )
+
+db.inventory.find( {
+     status: "A",
+     $or: [ { qty: { $lt: 30 } }, { item: /^p/ } ]
+} )
+SQL : SELECT * FROM inventory WHERE status = "A" AND ( qty < 30 OR item LIKE "p%") 
+
+IN operator
+db.<CollectionName>.find( { <fieldName>: { $in: [ "A", "D" ] } } )
+
+Query on Array
+exact array to match, including the order of the elements
+db.<collectionName>.find( { colour:['blue','red'] } )
+
+without regard to order or other elements in the array,
+db.inventory.find( { tags: { $all: ["red", "blank"] } } )
+
+{
+	hikeup: [2,50]
+}
+db.<collectionName>.find( {hikeUp:{$gt:5}} )
+
+
 

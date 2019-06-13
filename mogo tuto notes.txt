@@ -12,6 +12,11 @@ use <db name>
 **db name is not case sensitive
 **unitl unless we insert some data in db it is not  going to show on "show dbs " command.
 
+to delete db
+db.dropDatabase()
+
+to drop collection
+db.<collectionName>.drop()
 to insert single data into db collection
 db.<"collectionName">.insertOne({<one data peice>})
 **insertOne insert single data in one go.
@@ -86,4 +91,17 @@ lastName: "shekhar"}
 
 How to iterate such:
 db.<collectionName>.find({id: 2},{"name.firstName"})
+
+Condtional Operator(AND OR)
+db.<collectionName>.find(
+{
+$or : [{name:'ravi'},{name: 'pallavi'}]
+}
+)
+
+db.<collectionName>.find(
+{
+$and : [{name:'ravi'},{name: 'pallavi'}]
+}
+)
 
